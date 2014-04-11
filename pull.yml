@@ -3,4 +3,4 @@
   tasks:
     - name: pull files from home directory
       action: copy src={{ homedir }}/{{ item }} dest=files/home/{{ item }} 
-      with_lines: find files/home -mindepth 1 | cut -d '/' -f 3-
+      with_lines: find files/home -type f | cut -d '/' -f 3-

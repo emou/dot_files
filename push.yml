@@ -3,4 +3,4 @@
   tasks:
     - name: push files to home directory
       action: template src=files/home/{{ item }} dest={{ homedir }}/{{ item }}
-      with_lines: find files/home -mindepth 1 | cut -d '/' -f 3-
+      with_lines: find files/home -type f | cut -d '/' -f 3-
