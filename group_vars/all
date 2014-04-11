@@ -1,0 +1,3 @@
+---
+username: emil
+homedir: "/Users/{{ username }}"
