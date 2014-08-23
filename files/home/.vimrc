@@ -14,7 +14,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " github repos
+Bundle 'ervandew/supertab'
+
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 " Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-scripts/jellybeans.vim'
 
@@ -27,27 +30,43 @@ Bundle 'slim-template/vim-slim'
 
 " <c-p><c-f> buffer mode
 Bundle 'kien/ctrlp.vim'
+nnoremap <Leader>/ :CtrlP
+nnoremap <Leader>b :CtrlP
+
+let g:ctrlp_map = '<leader><Space>'
+let g:ctrlp_cmd = 'CtrlPCurWD'
+nmap <leader>b :CtrlPBuffer<cr>
 
 Bundle 'vim-scripts/grep.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jnwhiteh/vim-golang'
-Bundle 'msanders/snipmate.vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'honza/vim-snippets'
 
 " :Extradite in git repo
 Bundle 'int3/vim-extradite'
-Bundle 'tobiassvn/vim-gemfile'
 
 " Open files and position cursor at line number with `vim file:22`
 Bundle 'bogado/file-line'
 Bundle 'klen/python-mode'
-" vim-scripts repos
 Bundle 'rking/ag.vim'
+
 Bundle 'scrooloose/syntastic'
+let g:syntastic_cpp_checkers = []
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
 Bundle 'sjl/gundo.vim'
 
-" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+Bundle 'derekwyatt/vim-fswitch'
+" Switch to header
+nmap <silent> <Leader>h :FSHere<cr>
 
+" vim-scripts repos
+" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+"
 filetype plugin indent on     " required!
 
 syntax enable
@@ -121,6 +140,7 @@ let $PATH = "/usr/bin/:".$PATH
 
 set shiftwidth=2
 set tabstop=2
+autocmd BufNewFile,BufRead *.cpp,*.h,*.c set shiftwidth=4 tabstop=4
 
 nnoremap <Leader>g :GundoToggle<CR>
 
@@ -136,8 +156,6 @@ if v:version >= 703
   " mkdir -p ~/.vim/backup
   " mkdir -p ~/.vim/swap
   "  Backups
-  set nobackup              " do not keep backups after close
-  set nowritebackup          " do not keep a backup while working
   set noswapfile            " don't keep swp files either
   set backupdir=~/.vim/backup " store backups under ~/.vim/backup
   set backupcopy=yes        " keep attributes of original file
@@ -147,4 +165,5 @@ if v:version >= 703
   set cryptmethod=blowfish
 endif
 
-let g:syntastic_ruby_checkers=['mri', 'rubocop']
+" Force markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
