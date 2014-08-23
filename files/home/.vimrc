@@ -19,7 +19,6 @@ Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 " Bundle 'nanotech/jellybeans.vim'
-Bundle 'vim-scripts/jellybeans.vim'
 
 " <Leader><Leader>w
 Bundle 'Lokaltog/vim-easymotion'
@@ -38,6 +37,9 @@ let g:ctrlp_cmd = 'CtrlPCurWD'
 nmap <leader>b :CtrlPBuffer<cr>
 
 Bundle 'vim-scripts/grep.vim'
+Bundle 'vim-scripts/jellybeans.vim'
+Bundle 'vim-scripts/VimClojure'
+
 Bundle 'tomtom/tcomment_vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jnwhiteh/vim-golang'
