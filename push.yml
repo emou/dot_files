@@ -4,3 +4,5 @@
     - name: push files to home directory
       action: copy src=files/home/{{ item }} dest={{ homedir }}/{{ item }}
       with_lines: find files/home -type f | cut -d '/' -f 3-
+    - name: Create vim backup dir
+      file: path={{ homedir }}/.vim/backup state=directory
