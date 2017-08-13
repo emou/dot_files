@@ -1,25 +1,11 @@
-[core]
-	editor = /usr/bin/vim
 [user]
 	name = Emil Stanchev
-	email =
-[color]
-  branch = auto
-  diff = auto
-  status = auto
-[color "branch"]
-  current = yellow reverse
-  local = yellow 
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-[filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+	email = stanchev@uber.com
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[http "https://gopkg.in"]
+	followRedirects = true
