@@ -9,3 +9,5 @@
 	insteadOf = https://bitbucket.org/
 [http "https://gopkg.in"]
 	followRedirects = true
+[core]
+	editor = /usr/bin/vim
