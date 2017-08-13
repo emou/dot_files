@@ -3,33 +3,28 @@ nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 nnoremap <Leader>. :nohl<CR> :set nopaste<CR>
 
 filetype off                   " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
+" vim-plug
+call plug#begin('~/.vim/plugged')
 
 " github repos
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-dispatch'
-" Plugin 'nanotech/jellybeans.vim'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+" Plug 'nanotech/jellybeans.vim'
 
 " <Leader><Leader>w
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
-Plugin 'tpope/vim-rails.git'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'slim-template/vim-slim'
+" Plug 'tpope/vim-rails.git'
+Plug 'kchmck/vim-coffee-script'
+Plug 'slim-template/vim-slim'
 
 " <c-p><c-f> buffer mode
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 nnoremap <Leader>/ :CtrlP
 nnoremap <Leader>b :CtrlP
 
@@ -38,35 +33,35 @@ let g:ctrlp_cmd = 'CtrlPCurWD'
 nmap <leader>b :CtrlPBuffer<cr>
 nmap <leader>s :syntax sync fromstart<cr>
 
-Plugin 'vim-scripts/grep.vim'
-Plugin 'vim-scripts/jellybeans.vim'
-Plugin 'vim-scripts/VimClojure'
+Plug 'vim-scripts/grep.vim'
+Plug 'vim-scripts/jellybeans.vim'
+Plug 'vim-scripts/VimClojure'
 
-Plugin 'tomtom/tcomment_vim'
-Plugin 'scrooloose/nerdtree'
-" Plugin 'jnwhiteh/vim-golang'
-Plugin 'garbas/vim-snipmate'
-Plugin 'marcweber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'honza/vim-snippets'
+Plug 'tomtom/tcomment_vim'
+Plug 'scrooloose/nerdtree'
+" Plug 'jnwhiteh/vim-golang'
+Plug 'garbas/vim-snipmate'
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'honza/vim-snippets'
 
 " :Extradite in git repo
-Plugin 'int3/vim-extradite'
+Plug 'int3/vim-extradite'
 
 " Open files and position cursor at line number with `vim file:22`
-Plugin 'bogado/file-line'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'klen/python-mode'
-Plugin 'rking/ag.vim'
+Plug 'bogado/file-line'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'klen/python-mode'
+Plug 'rking/ag.vim'
 
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 let g:go_def_mode = 'guru'
 let g:go_fmt_command = "goimports"
 
-Bundle 'solarnz/thrift.vim'
-Plugin 'pangloss/vim-javascript'
+Plug 'solarnz/thrift.vim'
+Plug 'pangloss/vim-javascript'
 
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_cpp_checkers = []
 let g:syntastic_ruby_checkers = [] " ['mri', 'rubocop']
@@ -74,26 +69,29 @@ let g:syntastic_ruby_checkers = [] " ['mri', 'rubocop']
 let g:syntastic_go_checkers = ['golint', 'govet']
 let g:syntastic_aggregate_errors = 1
 
-Plugin 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim'
 
-Plugin 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-fswitch'
 " Switch to header
 nmap <silent> <Leader>h :FSHere<cr>
 
-Plugin 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 set listchars=tab:».,trail:.,extends:#,nbsp:.
-Plugin 'embear/vim-localvimrc'
+Plug 'embear/vim-localvimrc'
 let g:localvimrc_ask=0
 
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Avro
-Plugin 'AoLab/vim-avro'
+Plug 'AoLab/vim-avro'
 au BufRead,BufNewFile *.avdl setlocal filetype=avro-idl
 
 " vim-scripts repos
-" Plugin 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+" Plug 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
 "
+
+" vim-plug: Initialize plugin system
+call plug#end()
 filetype plugin indent on     " required!
 
 syntax enable
