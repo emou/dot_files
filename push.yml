@@ -1,8 +1,54 @@
 - name: Push configuration to the host system
   hosts: all
   tasks:
+
+    - name: Ensure autoload vim dir exists
+      file:
+        dest: "{{ homedir }}/.vim/autoload"
+        state: directory
+
     - name: push files to home directory
       action: copy src=files/home/{{ item }} dest={{ homedir }}/{{ item }}
-      with_lines: find files/home -type f | cut -d '/' -f 3-
+      with_lines:
+        - "find files/home -type f | cut -d '/' -f 3-"
+
     - name: Create vim backup dir
       file: path={{ homedir }}/.vim/backup state=directory
+
+    - name: Configure git
+      shell: git config --global {{ item }}
+      with_items:
+        - user.email "{{ email }}"
+        - user.name "{{ full_name }}"
+      tags: git
+
+    - name: Check if public_key exists
+      stat: path={{ ssh_key_path }}
+      register: public_key
+      tags: ssh
+
+    - name: Generate ssh keys
+      when: public_key.stat.exists == false
+      command: ssh-keygen -t rsa -b 4096 -C "{{ email }}" -f {{ ssh_key_path }}
+      tags: ssh
+
+    - name: oh-my-zsh | Install oh-my-zsh
+      apt: name={{ item }}  state=latest update_cache=yes
+      with_items:
+       - git
+       - zsh
+       - git-core
+      become: true
+
+    - name: oh-my-zsh | Clone down repository
+      git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest={{ homedir }}/.oh-my-zsh
+
+    - name: oh-my-zsh | Remove standard .zshrc
+      file: path={{ homedir }}/.zshrc state=absent
+
+    - name: oh-my-zsh | Deploy new .zshrc
+      template: src=files/home/.zshrc dest={{ homedir }}/.zshrc owner={{ username }}
+
+    - name: oh-my-zsh | Set zsh as default shell
+      user: name={{ username }} shell=/bin/zsh
+      become: true

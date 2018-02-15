@@ -1,3 +1,6 @@
 ---
-username: emil
-homedir: "/Users/{{ username }}"
+username: mint
+homedir: "{{ lookup('env', 'HOME') }}"
+ssh_key_path: ~/.ssh/id_rsa
+email: emil.stanchev@lucidlink.com
+full_name: Emil Stanchev

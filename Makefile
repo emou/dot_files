@@ -2,7 +2,7 @@ push-check:
 	/usr/bin/env ansible-playbook -i hosts push.yml --check --diff
 
 push:
-	/usr/bin/env ansible-playbook -i hosts push.yml
+	sudo /usr/bin/env ansible-playbook -i hosts push.yml
 
 pull:
 	/usr/bin/env ansible-playbook -i hosts pull.yml
