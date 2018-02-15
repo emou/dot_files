@@ -8,13 +8,12 @@
         - vim
       become: true
 
-    - name: Ensure autoload vim dir exists
-      file:
-        dest: "{{ homedir }}/.vim/autoload"
-        state: directory
-
     - name: Create vim backup dir
-      file: path={{ homedir }}/.vim/backup state=directory owner={{ username }}
+      file: path={{ homedir }}/.vim/{{ item }} state=directory owner={{ username }}
+      with_items:
+        - autoload
+        - backup
+        - plugged
 
     - name: push files to home directory
       action: copy src=files/home/{{ item }} dest={{ homedir }}/{{ item }}
@@ -46,14 +45,8 @@
        - git-core
       become: true
 
-    - name: oh-my-zsh | Clone down repository
+    - name: oh-my-zsh | Clone repository
       git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest={{ homedir }}/.oh-my-zsh
-
-    - name: oh-my-zsh | Remove standard .zshrc
-      file: path={{ homedir }}/.zshrc state=absent
-
-    - name: oh-my-zsh | Deploy new .zshrc
-      template: src=files/home/.zshrc dest={{ homedir }}/.zshrc owner={{ username }}
 
     - name: oh-my-zsh | Set zsh as default shell
       user: name={{ username }} shell=/bin/zsh

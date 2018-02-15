@@ -1,6 +1,3 @@
-[user]
-	name = Emil Stanchev
-	email = stanchev.emil@gmail.com
 [branch]
 	autosetuprebase = always
 [rerere]
