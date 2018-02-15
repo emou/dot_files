@@ -1,5 +1,5 @@
 ---
-username: mint
+username: "{{ lookup('env', 'USER') }}"
 homedir: "{{ lookup('env', 'HOME') }}"
 ssh_key_path: ~/.ssh/id_rsa
 email: emil.stanchev@lucidlink.com
