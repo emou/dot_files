@@ -1,7 +1,6 @@
-- name: Push configuration to the host system
+- name: Setup cpp toolchain
   hosts: all
   tasks:
-
     - name: Install toolchain
       apt: name={{ item }}  state=latest update_cache=yes
       with_items:
@@ -16,4 +15,41 @@
         - cppcheck
         - gcc-4.9
         - g++-4.9
+        - libc6:i386
+        - libstdc++6:i386
+        - gcc-4.9-multilib
+        - g++-4.9-multilib
+      become: true
+
+    - name: Pick gcc version
+      alternatives:
+        name: "{{ item }}"
+        link: "/usr/bin/{{ item }}"
+        path: "/usr/bin/{{ item }}-4.9"
+      with_items:
+        - g++
+        - gcc
+        - cpp
+      become: true
+
+    - name: Check if i386 is enabled
+      shell: dpkg --print-foreign-architectures | grep i386
+      register: result_i386_check
+      changed_when: result_i386_check.rc == 1
+      failed_when: result_i386_check.rc > 1
+
+    - name: Enable i386 architecture
+      command: dpkg --add-architecture i386
+      when: result_i386_check.rc == 1
+
+    - file:
+        src: /usr/include/asm-generic
+        dest: /usr/include/asm
+        owner: root
+        group: root
+        state: link
+      become: true
+
+    - name: Build user
+      shell: adduser build && usermod -aG sudo build
       become: true
