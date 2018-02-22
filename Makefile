@@ -7,6 +7,9 @@ push:
 cpp:
 	/usr/bin/env ansible-playbook -i hosts cpp.yml
 
+snaps:
+	/usr/bin/env ansible-playbook -i hosts snaps.yml
+
 pull:
 	/usr/bin/env ansible-playbook -i hosts pull.yml
 
