@@ -1,5 +1,5 @@
 # Bootstrap
 
 ```
-curl https://raw.githubusercontent.com/emou/dotfiles/master/bootstrap_ubuntu.sh | sudo bash
+wget https://raw.githubusercontent.com/emou/dotfiles/master/bootstrap_ubuntu.sh -O - | sudo bash
 ```
