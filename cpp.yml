@@ -1,0 +1,19 @@
+- name: Push configuration to the host system
+  hosts: all
+  tasks:
+
+    - name: Install toolchain
+      apt: name={{ item }}  state=latest update_cache=yes
+      with_items:
+        - fuse
+        - dtrx
+        - default-jre
+        - python
+        - cmake
+        - git
+        - debhelper
+        - build-essential
+        - cppcheck
+        - gcc-4.9
+        - g++-4.9
+      become: true

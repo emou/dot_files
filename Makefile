@@ -4,6 +4,9 @@ push-check:
 push:
 	/usr/bin/env ansible-playbook -i hosts push.yml
 
+cpp:
+	/usr/bin/env ansible-playbook -i hosts cpp.yml
+
 pull:
 	/usr/bin/env ansible-playbook -i hosts pull.yml
 
