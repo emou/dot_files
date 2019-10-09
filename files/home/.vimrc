@@ -22,6 +22,7 @@ Plug 'Lokaltog/vim-easymotion'
 " Plug 'tpope/vim-rails.git'
 Plug 'kchmck/vim-coffee-script'
 Plug 'slim-template/vim-slim'
+Plug 'leafgarland/typescript-vim'
 
 " <c-p><c-f> buffer mode
 Plug 'kien/ctrlp.vim'

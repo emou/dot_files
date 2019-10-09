@@ -2,5 +2,6 @@
   hosts: all
   tasks:
     - name: pull files from home directory
-      action: copy src={{ homedir }}/{{ item }} dest=files/home/{{ item }} 
-      with_lines: find files/home -type f | cut -d '/' -f 3-
+      action: copy src={{ homedir }}/{{ item }} dest=files/home/{{ item }}
+      with_lines:
+        - "find files/home -type f | cut -d / -f 3-"
