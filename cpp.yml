@@ -1,4 +1,4 @@
-- name: Setup cpp toolchain
+- name: Setup cpp toolchain on Debian
   hosts: all
   tasks:
     - name: Install toolchain
@@ -15,10 +15,10 @@
         - cppcheck
         - gcc-4.9
         - g++-4.9
-        - libc6:i386
-        - libstdc++6:i386
-        - gcc-4.9-multilib
-        - g++-4.9-multilib
+        # - libc6:i386
+        # - libstdc++6:i386
+        # - gcc-4.9-multilib
+        # - g++-4.9-multilib
       become: true
 
     - name: Pick gcc version
@@ -32,24 +32,31 @@
         - cpp
       become: true
 
-    - name: Check if i386 is enabled
-      shell: dpkg --print-foreign-architectures | grep i386
-      register: result_i386_check
-      changed_when: result_i386_check.rc == 1
-      failed_when: result_i386_check.rc > 1
-
-    - name: Enable i386 architecture
-      command: dpkg --add-architecture i386
-      when: result_i386_check.rc == 1
-
-    - file:
-        src: /usr/include/asm-generic
-        dest: /usr/include/asm
-        owner: root
-        group: root
-        state: link
+  tasks:
+    - name: Install stuff
+      apt: name={{ item }}  state=latest update_cache=yes
+      with_items:
+        - tmux
       become: true
 
-    - name: Build user
-      shell: adduser build && usermod -aG sudo build
-      become: true
+    #- name: Check if i386 is enabled
+    #  shell: dpkg --print-foreign-architectures | grep i386
+    #  register: result_i386_check
+    #  changed_when: result_i386_check.rc == 1
+    #  failed_when: result_i386_check.rc > 1
+
+    #- name: Enable i386 architecture
+    #  command: dpkg --add-architecture i386
+    #  when: result_i386_check.rc == 1
+
+    #- file:
+    #    src: /usr/include/asm-generic
+    #    dest: /usr/include/asm
+    #    owner: root
+    #    group: root
+    #    state: link
+    #  become: true
+
+    #- name: Build user
+    #  shell: adduser build && usermod -aG sudo build
+    #  become: true
