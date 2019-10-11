@@ -5,6 +5,7 @@
     - name: Install essentials
       apt: name={{ item }}  state=latest update_cache=yes
       with_items:
+        - jq
         - vim
         - curl
       become: true
