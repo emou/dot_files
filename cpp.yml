@@ -32,7 +32,6 @@
         - cpp
       become: true
 
-  tasks:
     - name: Install stuff
       apt: name={{ item }}  state=latest update_cache=yes
       with_items:

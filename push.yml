@@ -6,8 +6,10 @@
       apt: name={{ item }}  state=latest update_cache=yes
       with_items:
         - jq
-        - vim
+        - vim-gtk3
         - curl
+        - rsync
+        - strace
       become: true
 
     - name: Create vim backup dir
