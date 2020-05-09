@@ -10,6 +10,7 @@
         - curl
         - rsync
         - strace
+        - silversearcher-ag
       become: true
 
     - name: Create vim backup dir
