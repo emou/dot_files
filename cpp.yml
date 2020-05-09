@@ -15,6 +15,7 @@
         - cppcheck
         - gcc-4.9
         - g++-4.9
+        - ccache
         # - libc6:i386
         # - libstdc++6:i386
         # - gcc-4.9-multilib
